@@ -1,11 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { appActions } from "../utils/appStore";
 import { karnaugh, ModeEnum } from "../utils/models";
 
 const AddClause = () => {
+    const dispatch = useDispatch();
     const [clause, setClause] = useState("");
     const [mode, setMode] = useState<ModeEnum>(ModeEnum.DEC);
     const onClickValider = () => {
-        
+        if (clause !== "") {
+            karnaugh.addClause(Number(clause));
+            dispatch(appActions.setTable(karnaugh.table));
+            dispatch(appActions.setClauses(karnaugh.getStringClause()));
+            setClause("");
+        }
     };
     return (
         <div className="flex flex-col gap-y-4 items-center">
@@ -20,7 +28,6 @@ const AddClause = () => {
                         }
                         onClick={() => {
                             karnaugh.mode = ModeEnum.BIN;
-
                             // setMode(ModeEnum.BIN);
                         }}
                     >

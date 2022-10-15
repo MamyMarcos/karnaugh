@@ -10,7 +10,7 @@ export enum StepEnum {
 export interface AppState {
     nbVar: number;
     table: number[][];
-    clauses: number[];
+    clauses: string[];
     step: StepEnum;
 }
 
@@ -30,14 +30,17 @@ export const appSlice = createSlice({
                 state.nbVar = action.payload;
                 karnaugh.nbVar = action.payload;
                 karnaugh.initTable();
-                state.table = karnaugh.table;
+                state.table = [...karnaugh.table];
             }
         },
-        setClauses(state, action: PayloadAction<number[]>) {
+        setClauses(state, action: PayloadAction<string[]>) {
             state.clauses = action.payload;
         },
         setStep(state, action: PayloadAction<StepEnum>) {
             state.step = action.payload;
+        },
+        setTable(state, action: PayloadAction<number[][]>) {
+            state.table = action.payload;
         },
     },
 });
