@@ -13,7 +13,7 @@ const App = () => {
         <div className="App">
             <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col gap-y-4 items-center">
                 <h1 className="text-center text-2xl font-bold">
-                    Simplification de Karnaugh
+                    Tableau  de Karnaugh
                 </h1>
                 {step === StepEnum.SelectNbVar && (
                     <div>
