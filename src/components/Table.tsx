@@ -25,7 +25,7 @@ const Table = () => {
     const headLeftRight = () => {
         let res = "";
         for (let i = 0; i < karnaugh.nbVar; i++) {
-            if (i !== karnaugh.height() / 2) {
+            if (i !== Math.log2(karnaugh.height())) {
                 res += String.fromCharCode("a".charCodeAt(0) + i);
             } else {
                 res += "\\" + String.fromCharCode("a".charCodeAt(0) + i);
@@ -38,7 +38,9 @@ const Table = () => {
             <table>
                 <thead>
                     <tr>
-                        <td className="bg-gray-100 text-base">{headLeftRight()}</td>
+                        <td className="bg-gray-100 text-base">
+                            {headLeftRight()}
+                        </td>
                         {new Array(karnaugh.width()).fill(0).map((_, i) => (
                             <td key={v4()} className="bg-gray-100">
                                 {(
@@ -46,7 +48,11 @@ const Table = () => {
                                     Karnaugh.getGrayCode(karnaugh.width())[
                                         i
                                     ].toString(2)
-                                ).slice(-1 * (karnaugh.width() / 2))}
+                                ).slice(
+                                    -1 *
+                                        (Math.floor(karnaugh.nbVar / 2) +
+                                            (karnaugh.nbVar % 2))
+                                )}
                             </td>
                         ))}
                     </tr>
@@ -64,7 +70,7 @@ const Table = () => {
                                                     row.length
                                                 )[i].toString(2)
                                             ).slice(
-                                                (-1 * karnaugh.height()) / 2
+                                                -1 * Math.log2(karnaugh.height())
                                             )}
                                         </td>
                                     )}

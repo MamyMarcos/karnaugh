@@ -6,6 +6,7 @@
 
 body {
     font-family: "Montserrat", sans-serif;
+    @apply text-gray-600;
 }
 
 td {

@@ -27,7 +27,6 @@ const AddClause = () => {
                                 "bg-blue-600 text-white border-blue-600")
                         }
                         onClick={() => {
-                            karnaugh.mode = ModeEnum.BIN;
                             // setMode(ModeEnum.BIN);
                         }}
                     >
@@ -40,7 +39,6 @@ const AddClause = () => {
                                 "bg-blue-600 text-white border-blue-600")
                         }
                         onClick={() => {
-                            karnaugh.mode = ModeEnum.DEC;
                             setMode(ModeEnum.DEC);
                         }}
                     >
@@ -56,7 +54,7 @@ const AddClause = () => {
                     onInput={(e) => {
                         if (!isNaN(Number(e.currentTarget.value)) && karnaugh) {
                             if (
-                                karnaugh.mode === ModeEnum.DEC &&
+                                mode === ModeEnum.DEC &&
                                 0 <= Number(e.currentTarget.value) &&
                                 Number(e.currentTarget.value) <
                                     0b1 << karnaugh.nbVar
